@@ -67,7 +67,11 @@ exports.gettask = (req, res, next) => {
         // let dat = { duration };
         console.log(user_id);
         db.query("SELECT * FROM tasks_info WHERE user_id = ?", user_id, (err, result) => {
-            if (err) throw err;
+            if (err) {
+                res.status(500).json({
+                    message: "Error!"
+                });
+            }
 
             res.status(200).json({
                 message: result
