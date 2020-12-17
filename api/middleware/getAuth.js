@@ -4,7 +4,7 @@ const express = require('express');
 var methods = {};
 methods.getAuthUser = function (req) {
     var token = req.headers['x-access-token'];
-    var userId;
+    var user_id;
     console.log(token);
     if (token) {
         jwt.verify(token, "MYSECERTKEY", function (err, decoded) {
@@ -20,11 +20,11 @@ methods.getAuthUser = function (req) {
                 });
             }
             req.decoded = decoded;
-            userId = decoded.userId;
-            console.log(decoded.userId);
+            user_id = decoded.user_id;
+            console.log(decoded.user_id);
         });
     }
-    return userId;
+    return user_id;
 }
 
 module.exports = methods;
